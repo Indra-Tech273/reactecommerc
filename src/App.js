@@ -1,23 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './Navbar';
+import Carousel from './Carousel';
+ import Card from './Card';
+import data from './Data';
+ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+// import Cart from './Cart';
+import React from 'react';
 
 function App() {
-  return (
+
+  const [cartData, setCartData] = React.useState([])
+
+  const handleCartData = (product) =>{
+    console.log(product)
+    setCartData((cartData)=>[...cartData, {data:product, quantity:1}]);
+  }
+    return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+       <Router>
+      <Navbar />
+      <Carousel />
+         <Routes>
+          {/* <Route exact path="/" element={<Card data={data} handleCartData={handleCartData} />}/> */}
+          {/* <Route exact path="/cart" element={<Cart data={cartData}/>}/> */}
+        </Routes>
+      </Router> 
+      
+      
     </div>
   );
 }
